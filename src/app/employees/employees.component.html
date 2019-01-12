@@ -1,0 +1,42 @@
+<form class="emp-form" #employeeForm="ngForm" (ngSubmit)="registerLocal(employeeForm)">
+  <input type="hidden" name="id" #EmployeeID="ngModel" [(ngModel)]="employeeService.selectedEmployee.id">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="nombre" #FirstName="ngModel" [(ngModel)]="employeeService.selectedEmployee.nombre"
+        placeholder="nombre" required>
+      <div class="validation-error" *ngIf="FirstName.invalid && FirstName.touched">This Field is Required.</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="curso" #LastName="ngModel" [(ngModel)]="employeeService.selectedEmployee.curso" placeholder="curso"
+        required>
+      <div class="validation-error" *ngIf="LastName.invalid && LastName.touched">This Field is Required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" name="Position" #Position="ngModel" [(ngModel)]="employeeService.selectedEmployee.imagen" placeholder="imagen">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button [disabled]="!employeeForm.valid" type="submit" class="btn btn-lg btn-block btn-info">
+        <i class="fa fa-floppy-o"></i> Submit</button>
+    </div>
+    <div class="form-group col-md-4">
+      <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(employeeForm)">
+        <i class="fa fa-repeat"></i> Reset</button>
+    </div>
+  </div>
+  <table class="table table-sm table-hover">
+    <tr *ngFor="let employee of employeeService.employeeList">
+      <td>{{employee.nombre}} - {{employee.curso}}</td>
+      <td>{{employee.imagen}}</td>
+      <td>
+        <a class="btn" (click)="showForEdit(employee)">
+          <i class="fa fa-pencil-square-o"></i>
+        </a>
+        <a class="btn text-danger" (click)="onDelete(employee.EmployeeID)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </td>
+    </tr>
+  </table>
+</form>

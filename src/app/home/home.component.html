@@ -1,0 +1,24 @@
+<div style="text-align:center">
+  <h2 class="jumbotron bg-secondary text-white">Cursos Register</h2>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <app-employees></app-employees>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-sm table-hover">
+      <tr *ngFor="let employee of employeeService.employeeList">
+        <td>{{employee.nombre}} - {{employee.curso}}</td>
+        <td>{{employee.imagen}}</td>
+        <td>
+          <a class="btn" (click)="showForEdit(employee)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn text-danger" (click)="onDelete(employee.EmployeeID)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
